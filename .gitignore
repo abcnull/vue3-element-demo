@@ -22,9 +22,8 @@ coverage
 *.local
 
 # ========== 编辑器目录和文件 ==========
-# VSCode 配置目录（但保留 extensions.json 推荐插件）
+# VSCode 配置目录
 .vscode/*
-!.vscode/extensions.json
 # JetBrains IDE（WebStorm 等）生成的配置文件
 .idea
 # Visual Studio 生成的文件
