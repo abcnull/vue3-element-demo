@@ -1,0 +1,15 @@
+{
+  // 编译器配置选项
+  "compilerOptions": {
+    // 路径映射配置：定义模块解析时的路径别名
+    // "@/*" 表示在代码中导入时使用 @/ 开头，实际会映射到 ./src/ 目录
+    // 例如：import xxx from '@/api/student' 实际会解析为 import xxx from './src/api/student'
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  // 排除的目录或文件，这些路径下的文件不会被 IDE 索引或检查
+  // node_modules - 第三方依赖库
+  // dist - 构建产物目录
+  "exclude": ["node_modules", "dist"]
+}
