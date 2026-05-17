@@ -1,12 +1,12 @@
-/**
- * 学生列表页面
- * 
- * 此页面提供以下功能：
- * - 多条件搜索：学号、姓名、性别、年级、班级、创建时间范围
- * - 数据表格展示：显示学生信息列表
- * - 分页功能：支持页码切换和每页条数调整
- * - 编辑/删除操作：对已有学生信息进行管理
- */
+<!-- 
+  学生列表页面
+  * 
+  * 此页面提供以下功能：
+  * - 多条件搜索：学号、姓名、性别、年级、班级、创建时间范围
+  * - 数据表格展示：显示学生信息列表
+  * - 分页功能：支持页码切换和每页条数调整
+  * - 编辑/删除操作：对已有学生信息进行管理
+ -->
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
@@ -176,7 +176,7 @@ async function handleDelete(row) {
     // 调用删除 API
     await deleteStudent(row.studentId)
     ElMessage.success('删除成功')
-    
+
     // 删除后若当前页仅剩一条且非第一页，回到上一页
     if (tableData.value.length === 1 && pagination.value.currentPage > 1) {
       pagination.value.currentPage--
@@ -218,12 +218,12 @@ onMounted(() => {
         <el-form-item label="学号">
           <el-input v-model="searchForm.studentId" placeholder="请输入学号" clearable />
         </el-form-item>
-        
+
         <!-- 姓名搜索：文本输入框 -->
         <el-form-item label="姓名">
           <el-input v-model="searchForm.name" placeholder="请输入姓名" clearable />
         </el-form-item>
-        
+
         <!-- 性别搜索：下拉选择框 -->
         <el-form-item label="性别">
           <el-select v-model="searchForm.gender" placeholder="请选择" clearable>
@@ -231,42 +231,27 @@ onMounted(() => {
             <el-option label="女" value="女" />
           </el-select>
         </el-form-item>
-        
+
         <!-- 年级搜索：下拉选择框，使用 gradeOptions 数据 -->
         <el-form-item label="年级">
           <el-select v-model="searchForm.grade" placeholder="请选择" clearable>
-            <el-option
-              v-for="item in gradeOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
+            <el-option v-for="item in gradeOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        
+
         <!-- 班级搜索：下拉选择框，使用 classOptions 数据 -->
         <el-form-item label="班级">
           <el-select v-model="searchForm.className" placeholder="请选择" clearable>
-            <el-option
-              v-for="item in classOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
+            <el-option v-for="item in classOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        
+
         <!-- 创建时间范围搜索：日期范围选择器 -->
         <el-form-item label="创建时间">
-          <el-date-picker
-            v-model="searchForm.createTimeRange"
-            type="daterange"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-            value-format="YYYY-MM-DD"
-          />
+          <el-date-picker v-model="searchForm.createTimeRange" type="daterange" start-placeholder="开始日期"
+            end-placeholder="结束日期" value-format="YYYY-MM-DD" />
         </el-form-item>
-        
+
         <!-- 搜索和重置按钮 -->
         <el-form-item>
           <el-button type="primary" @click="handleSearch">搜索</el-button>
@@ -288,27 +273,27 @@ onMounted(() => {
         <el-table-column prop="studentId" label="学号" min-width="120" />
         <el-table-column prop="name" label="姓名" min-width="100" />
         <el-table-column prop="gender" label="性别" min-width="80" />
-        
+
         <!-- 年级列：使用模板插槽拼接"年级"后缀 -->
         <el-table-column prop="grade" label="年级" min-width="80">
           <template #default="{ row }">{{ row.grade }}年级</template>
         </el-table-column>
-        
+
         <!-- 班级列：使用模板插槽拼接"班"后缀 -->
         <el-table-column prop="className" label="班级" min-width="80">
           <template #default="{ row }">{{ row.className }}班</template>
         </el-table-column>
-        
+
         <!-- 创建时间列：使用 formatTime 函数格式化 -->
         <el-table-column label="创建时间" min-width="170">
           <template #default="{ row }">{{ formatTime(row.createTime) }}</template>
         </el-table-column>
-        
+
         <!-- 更新时间列：使用 formatTime 函数格式化 -->
         <el-table-column label="更新时间" min-width="170">
           <template #default="{ row }">{{ formatTime(row.updateTime) }}</template>
         </el-table-column>
-        
+
         <!-- 操作列：固定到右侧，包含编辑和删除按钮 -->
         <el-table-column label="操作" fixed="right" min-width="160">
           <template #default="{ row }">
@@ -327,15 +312,9 @@ onMounted(() => {
         layout：分页组件布局（总条数、每页条数选择器、上一页、页码、下一页、跳转输入框）
       -->
       <div class="pagination-wrapper">
-        <el-pagination
-          v-model:current-page="pagination.currentPage"
-          v-model:page-size="pagination.pageSize"
-          :page-sizes="[10, 20, 50]"
-          :total="pagination.total"
-          layout="total, sizes, prev, pager, next, jumper"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+        <el-pagination v-model:current-page="pagination.currentPage" v-model:page-size="pagination.pageSize"
+          :page-sizes="[10, 20, 50]" :total="pagination.total" layout="total, sizes, prev, pager, next, jumper"
+          @size-change="handleSizeChange" @current-change="handleCurrentChange" />
       </div>
     </el-card>
   </div>

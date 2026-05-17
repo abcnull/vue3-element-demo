@@ -1,16 +1,16 @@
-/**
- * 学生表单页面
- * 
- * 此页面用于新增或编辑学生信息，通过路由参数区分模式：
- * - /students/add：新增模式
- * - /students/edit/:studentId：编辑模式
- * 
- * 功能包括：
- * - 表单校验（必填项检查）
- * - 新增/编辑模式自动切换
- * - 编辑时自动加载现有数据
- * - 提交成功后返回列表页
- */
+<!-- 
+  学生表单页面
+  * 
+  * 此页面用于新增或编辑学生信息，通过路由参数区分模式：
+  * - /students/add：新增模式
+  * - /students/edit/:studentId：编辑模式
+  * 
+  * 功能包括：
+  * - 表单校验（必填项检查）
+  * - 新增/编辑模式自动切换
+  * - 编辑时自动加载现有数据
+  * - 提交成功后返回列表页
+ -->
 <script setup>
 import { ref, reactive, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

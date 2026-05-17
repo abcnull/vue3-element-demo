@@ -1,4 +1,4 @@
-/**
+<!-- 
  * 主布局组件
  * 
  * 此组件定义了整个应用的页面布局结构，包括：
@@ -6,7 +6,7 @@
  * - 右侧主内容区（子路由渲染区域）
  * 
  * 布局使用了 ElementPlus 的 Container 布局容器组件
- */
+  -->
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -54,7 +54,7 @@ function handleMenuSelect(index) {
     <el-aside width="220px" style="background-color: #304156">
       <!-- 系统 Logo / 标题区域 -->
       <div class="logo">学生管理系统</div>
-      
+
       <!-- 
         侧边栏菜单组件
         :default-active：当前高亮的菜单项
@@ -64,20 +64,14 @@ function handleMenuSelect(index) {
         router：开启路由模式，点击菜单自动跳转
         @select：菜单选择事件
       -->
-      <el-menu
-        :default-active="activeMenu"
-        background-color="#304156"
-        text-color="#bfcbd9"
-        active-text-color="#409eff"
-        router
-        @select="handleMenuSelect"
-      >
+      <el-menu :default-active="activeMenu" background-color="#304156" text-color="#bfcbd9" active-text-color="#409eff"
+        router @select="handleMenuSelect">
         <!-- 学生信息查询菜单项 -->
         <el-menu-item index="/students">
           <el-icon><i class="el-icon-search" /></el-icon>
           <span>学生信息查询</span>
         </el-menu-item>
-        
+
         <!-- 学生信息新增菜单项 -->
         <el-menu-item index="/students/add">
           <el-icon><i class="el-icon-plus" /></el-icon>
@@ -85,7 +79,7 @@ function handleMenuSelect(index) {
         </el-menu-item>
       </el-menu>
     </el-aside>
-    
+
     <!-- 
       主内容区域：显示子路由组件（如 StudentList、StudentForm 等）
       el-main：主内容容器
@@ -106,8 +100,10 @@ function handleMenuSelect(index) {
 */
 .logo {
   height: 60px;
-  line-height: 60px;   /* 垂直居中 */
-  text-align: center;  /* 水平居中 */
+  line-height: 60px;
+  /* 垂直居中 */
+  text-align: center;
+  /* 水平居中 */
   font-size: 18px;
   font-weight: bold;
   color: #fff;
